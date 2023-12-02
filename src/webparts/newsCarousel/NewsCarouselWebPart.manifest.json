@@ -19,7 +19,7 @@
       "group": { "default": "Advanced" },
       "title": { "default": "NewsCarousel" },
       "description": { "default": "NewsCarousel description" },
-      "officeFabricIconFontName": "Page",
+      "officeFabricIconFontName": "News",
       "properties": {
         "description": "NewsCarousel"
       }

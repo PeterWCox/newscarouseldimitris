@@ -12,7 +12,9 @@ import "./NewsCarousel.css";
 //   margin: "0 5px",
 // });
 
-export interface NewsCarouselProps {}
+export interface NewsCarouselProps {
+  context: any;
+}
 
 export const NewsCarousel = (props: NewsCarouselProps) => {
   //States
@@ -25,8 +27,14 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
         const sp = getSP();
         const items: any[] = await sp.web.lists
           .getByTitle("Site Pages")
-          .items();
+          .items.select(
+            "id,Title,Description,Created,BannerImageUrl,Created,FileRef"
+          )();
+
         console.log(items);
+
+        //How do I get the URL of the page?
+
         setItems(items);
       } catch (err) {
         console.log(err);
@@ -49,7 +57,12 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
     }
   };
 
-  console.log(items);
+  const getLinkUrlFromFileRef = (item: any) => {
+    //Get site URL from context
+    const siteUrl = props.context.pageContext.web.absoluteUrl;
+    const newsArticleUrl = `${siteUrl}/${item.FileRef}`;
+    return newsArticleUrl;
+  };
 
   //Filter out any items with Title == "Home"
   const updatedItems = items.filter((item) => {
@@ -90,9 +103,7 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
                     </div>
 
                     {/* Read More */}
-                    <div className="button">
-                      <a href="{location.href=newsart['url']}">Read more</a>
-                    </div>
+                    <a href={getLinkUrlFromFileRef(item)}>Read more</a>
                   </div>
                 </div>
               </div>

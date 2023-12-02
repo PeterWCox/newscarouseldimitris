@@ -17,7 +17,9 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
   public render(): void {
     const element: React.ReactElement<NewsCarouselProps> = React.createElement(
       NewsCarousel,
-      {}
+      {
+        context: this.context
+      }
     );
 
     ReactDom.render(element, this.domElement);
