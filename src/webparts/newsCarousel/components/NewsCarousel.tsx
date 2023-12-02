@@ -4,6 +4,7 @@ import AwesomeSlider from "react-awesome-slider";
 // import { mergeStyles } from "@fluentui/react";
 import { useEffect, useState } from "react";
 import "./NewsCarousel.css";
+import { Icon, Link } from "@fluentui/react";
 
 // const iconClass = mergeStyles({
 //   fontSize: 12,
@@ -102,8 +103,11 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
                       {new Date(item.Created).toLocaleDateString()}
                     </div>
 
-                    {/* Read More */}
-                    <a href={getLinkUrlFromFileRef(item)}>Read more</a>
+                    {/* Add a FluentUI Link that opens in a new tab */}
+                    <Link href={getLinkUrlFromFileRef(item)} target="_blank">
+                      <Icon iconName="ChevronRight" aria-hidden="true" />
+                      Read more
+                    </Link>
                   </div>
                 </div>
               </div>
