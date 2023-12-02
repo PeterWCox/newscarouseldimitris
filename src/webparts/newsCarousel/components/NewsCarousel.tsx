@@ -44,7 +44,6 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
     getNewsPosts();
   }, []);
 
-  // background-image: url(&quot;https://sharepointsenpai.sharepoint.com/_layouts/15/images/sitepagethumbnail.png&quot;); background-size: cover;
   //If no items, show loading screen
   if (items.length === 0) {
     return <div>Loading...</div>;
@@ -72,6 +71,21 @@ export const NewsCarousel = (props: NewsCarouselProps) => {
 
   return (
     <>
+      <pre>
+        {JSON.stringify(
+          updatedItems.map((item) => {
+            return {
+              Title: item.Title,
+              Description: item.Description,
+              Created: item.Created,
+              BannerImageUrl: item.BannerImageUrl,
+              FileRef: item.FileRef,
+            };
+          }),
+          null,
+          2
+        )}
+      </pre>
       <AwesomeSlider
         // play={true}
         // cancelOnInteraction={false} // should stop playing on user interaction
